@@ -473,6 +473,30 @@ static SlideNavigationController *singletonInstance;
 	return NO;
 }
 
+- (BOOL)shouldDisplayBarButtonMenu:(Menu)menu forViewController:(UIViewController *)vc
+{
+	if (menu == MenuRight)
+	{
+		if ([vc respondsToSelector:@selector(slideNavigationControllerShouldDisplayRightMenu)] &&
+			[(UIViewController<SlideNavigationControllerDelegate> *)vc slideNavigationControllerShouldDisplayRightMenu] &&
+            [(UIViewController<SlideNavigationControllerDelegate> *)vc slideNavigationControllerShouldDisplayRightBarButton])
+		{
+			return YES;
+		}
+	}
+	if (menu == MenuLeft)
+	{
+		if ([vc respondsToSelector:@selector(slideNavigationControllerShouldDisplayLeftMenu)] &&
+            [(UIViewController<SlideNavigationControllerDelegate> *)vc slideNavigationControllerShouldDisplayLeftMenu] &&
+            [(UIViewController<SlideNavigationControllerDelegate> *)vc slideNavigationControllerShouldDisplayLeftBarButton])
+		{
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
 - (void)openMenu:(Menu)menu withDuration:(float)duration andCompletion:(void (^)())completion
 {
 	[self enableTapGestureToCloseMenu:YES];
