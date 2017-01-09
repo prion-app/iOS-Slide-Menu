@@ -693,10 +693,10 @@ static SlideNavigationController *singletonInstance;
 	  willShowViewController:(UIViewController *)viewController
 					animated:(BOOL)animated
 {
-	if ([self shouldDisplayMenu:MenuLeft forViewController:viewController])
+	if ([self shouldDisplayBarButtonMenu:MenuLeft forViewController:viewController])
 		viewController.navigationItem.leftBarButtonItem = [self barButtonItemForMenu:MenuLeft];
 	
-	if ([self shouldDisplayMenu:MenuRight forViewController:viewController])
+	if ([self shouldDisplayBarButtonMenu:MenuRight forViewController:viewController])
 		viewController.navigationItem.rightBarButtonItem = [self barButtonItemForMenu:MenuRight];
 }
 
